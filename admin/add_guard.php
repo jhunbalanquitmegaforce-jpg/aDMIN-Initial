@@ -86,7 +86,7 @@ if(isset($_POST['save'])){
             </div>
             <div class="col-md-6 mb-3">
                 <label>Date Hired</label>
-                <input type="text" name="date_hired" class="form-control" required>
+                <input type="date" name="date_hired" class="form-control" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label>License Number</label>
@@ -94,7 +94,7 @@ if(isset($_POST['save'])){
             </div>
             <div class="col-md-6 mb-3">
                 <label>License Expiry</label>
-                <input type="text" name="license_expiry" class="form-control" required>
+                <input type="date" name="license_expiry" class="form-control" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label>Status</label>

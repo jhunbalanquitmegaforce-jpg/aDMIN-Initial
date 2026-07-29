@@ -15,9 +15,13 @@
         <i class="fa-solid fa-user-shield"></i>
         Guards
     </a>
-     <a href="../clients.php">
+     <a href="clients.php">
         <i class="fa-solid fa-building"></i>
         Clients
+    </a>
+    <a href="detachments.php">
+        <i class="fa-solid fa-map-location-dot"></i>
+        Detachments
     </a>
      <a href="../settings.php">
         <i class="fa-solid fa-gear"></i>
