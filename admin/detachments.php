@@ -73,6 +73,7 @@ if(!empty($search)){
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
                     <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                     <td>
+                        
                         <a href="view_detachment.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">
                             view
                         </a>
@@ -82,6 +83,9 @@ if(!empty($search)){
                         <a href="delete_detachment.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm"
                         onclick="return confirm('Are you sure you want to delete this?')">
                             Delete
+                        </a>
+                        <a href="assign_guard.php?id=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">
+                            Assign Guards
                         </a>
                     </td>
                 </tr>
