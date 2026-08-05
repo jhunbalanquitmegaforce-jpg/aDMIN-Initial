@@ -65,6 +65,62 @@ if(!$row){
                     <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                 </tr>
                 </table>
+                <?php $countStmt = mysqli_prepare($con, "SELECT COUNT(*) AS total FROM guards WHERE detachment_id = ?");
+                mysqli_stmt_bind_param($countStmt, "i", $id);
+                mysqli_stmt_execute($countStmt);
+                $countResult = mysqli_stmt_get_result($countStmt);
+                $countRow = mysqli_fetch_assoc($countResult);
+
+                $assigned = $countRow['total'];
+                $required = $row['guards_required'];
+                ?>
+                <h5 class="mt-4">Assigned Guards(<?php echo $assigned; ?> / <?php echo $required; ?>)</h5>
+                <?php if ($assigned == 0 ){
+                        echo '<div class="alert alert-danger">No guards assigned.</div>';
+                    }else if ($assigned < $required){
+                        echo '<div class="alert alert-warning">Understaffed (' . ($required - $assigned) . ' more  guard(s) needed)</div>';   
+                    }else{
+                        echo '<div class="alert alert-success">Fully staffed</div>';
+                    }  
+                    ?>      
+                    
+                    
+                    
+                    <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Employee No</th>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT guards.* FROM guards WHERE guards.detachment_id = ?";
+                        $stmt = mysqli_prepare($con, $sql);
+                        mysqli_stmt_bind_param($stmt, "i", $id);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+
+                        while($guard_row = mysqli_fetch_assoc($result)){
+                        ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($guard_row['employee_no']); ?></td>
+                            <td>
+                                <img src="../assets/uploads/guards/<?php echo htmlspecialchars($guard_row['profile_picture']); ?>"
+                                width="60"
+                                height="60"
+                                style="object-fit:cover; border-radius: 50%;">
+                            </td>
+                            <td><?php echo htmlspecialchars($guard_row['firstname']." ".$guard_row['lastname']); ?></td>
+                            <td><?php echo htmlspecialchars($guard_row['gender']); ?></td>
+                            <td><?php echo htmlspecialchars($guard_row['contact_no']); ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
                 <a href="detachments.php" class="btn btn-secondary">
                     Back
                 </a>

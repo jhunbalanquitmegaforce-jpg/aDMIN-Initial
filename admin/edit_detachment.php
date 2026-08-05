@@ -2,6 +2,7 @@
 include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");
+include("includes/audit_log.php");
 
 if(!isset($_GET['id'])){
     header("Location: detachments.php");
@@ -39,6 +40,13 @@ if(isset($_POST['update'])){
     $stmt = mysqli_prepare($con, $sql);
 mysqli_stmt_bind_param($stmt, "sssssssi", $detachment_name, $client_id, $address, $contact_person, $contact_no, $guards_required, $status, $id);
 if(mysqli_stmt_execute($stmt)){
+    addAuditLog(
+            $con, 
+            $_SESSION['user_id'],
+            "Updated Detachment",
+            "Detachment Management",
+            "Updated detachment: $detachment_name"
+        );   
     header("Location: detachments.php");
     exit();
 }else{

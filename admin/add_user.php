@@ -2,6 +2,7 @@
 include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");
+include("includes/audit_log.php");
 
 if(isset($_POST['save'])){
     $fullname = trim($_POST['fullname']);
@@ -24,6 +25,13 @@ if(isset($_POST['save'])){
         $stmt = mysqli_prepare($con, $sql);
         mysqli_stmt_bind_param( $stmt, "isssss", $role_id, $fullname, $email, $username, $password, $status);
         if(mysqli_stmt_execute($stmt)){
+             addAuditLog(
+            $con, 
+            $_SESSION['user_id'],
+            "Added User",
+            "User Management",
+            "Created user: $fullname"
+        );
             header("Location: users.php");
             exit();
         }else{

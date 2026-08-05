@@ -3,6 +3,7 @@ include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");
 
+
 $search = "";
 if (isset($_GET['search'])){
     $search = trim($_GET['search']);

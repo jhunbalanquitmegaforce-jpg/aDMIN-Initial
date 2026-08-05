@@ -2,6 +2,7 @@
 include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");
+include("includes/audit_log.php");
 
 if(isset($_POST['save'])){
     $client_name   = trim($_POST['client_name']);
@@ -25,11 +26,6 @@ if(isset($_POST['save'])){
             $profile_picture = time() ."_" . $_FILES['profile_picture']['name'];
             move_uploaded_file($_FILES['profile_picture']['tmp_name'],
             "../assets/uploads/guards/" .$profile_picture);
-            // {
-            //     echo "Upload Success";
-            // }else{
-            //     echo "Upload Failed";
-            // }
         }
         $sql = "INSERT INTO clients
         (client_name, contact_person, contact_no, email, address, status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -37,6 +33,13 @@ if(isset($_POST['save'])){
         mysqli_stmt_bind_param( $stmt, "ssssss", $client_name,  $contact_person, $contact_no, $email, $address, $status);
         
         if(mysqli_stmt_execute($stmt)){
+            addAuditLog(
+            $con, 
+            $_SESSION['user_id'],
+            "Added client",
+            "client Management",
+            "Created client: $client_name"
+        );
             header("Location: clients.php");
             exit();
         }else{

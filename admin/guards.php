@@ -8,7 +8,7 @@ $search = "";
 if(isset($_GET['search'])){
     $search = trim($_GET['search']);
 }
-$sql = "SELECT * FROM guards WHERE employee_no LIKE? OR firstname LIKE? OR lastname LIKE? ORDER BY id DESC";
+$sql = "SELECT  guards.*, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id where employee_no LIKE ? OR firstname LIKE ? OR lastname LIKE ? ORDER BY guards.lastname ASC";
 
 $stmt = mysqli_prepare($con, $sql);
 $keyword = "%$search%";
@@ -29,7 +29,7 @@ $query = mysqli_stmt_get_result($stmt);
         <form method="GET" class="mb-3">
             <div class="input-group">
 
-            <input type="text" name="search" class="form-control" placeholder="Seach Guard..." value="<?php echo htmlspecialchars($search); ?>">
+            <input type="text" name="search" class="form-control" placeholder="Search Guard..." value="<?php echo htmlspecialchars($search); ?>">
             <button class="btn btn-primary">
                 Search
             </button>
@@ -46,6 +46,7 @@ $query = mysqli_stmt_get_result($stmt);
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Contact</th>
+                <th>Detachment</th>
                 <th>Status</th>
                 <th width="180">Action</th>
             </tr>
@@ -65,6 +66,7 @@ $query = mysqli_stmt_get_result($stmt);
                     </td>
                     <td><?php echo htmlspecialchars($row['gender']); ?></td>
                     <td><?php echo htmlspecialchars($row['contact_no']); ?></td>
+                    <td><?php echo !empty($row['detachment_name']) ? htmlspecialchars($row['detachment_name']) : 'Unassigned'; ?></td>
                     <td><?php echo htmlspecialchars($row['status']); ?></td>
                     <td>
                         <a href="edit_guard.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">

@@ -2,6 +2,7 @@
 include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");
+include("includes/audit_log.php");
 
 if(isset($_POST['save'])){
     $employee_no = trim($_POST['employee_no']);
@@ -29,11 +30,7 @@ if(isset($_POST['save'])){
             $profile_picture = time() ."_" . $_FILES['profile_picture']['name'];
             move_uploaded_file($_FILES['profile_picture']['tmp_name'],
             "../assets/uploads/guards/" .$profile_picture);
-            // {
-            //     echo "Upload Success";
-            // }else{
-            //     echo "Upload Failed";
-            // }
+            
         }
         $sql = "INSERT INTO guards
         (employee_no, firstname, profile_picture, middlename, lastname, gender, contact_no, date_hired, license_no, license_expiry, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -41,6 +38,13 @@ if(isset($_POST['save'])){
         mysqli_stmt_bind_param( $stmt, "sssssssssss", $employee_no,  $firstname, $profile_picture, $middlename, $lastname, $gender, $contact_no, $date_hired, $license_no, $license_expiry, $status);
         
         if(mysqli_stmt_execute($stmt)){
+            addAuditLog(
+            $con, 
+            $_SESSION['user_id'],
+            "Added guard",
+            "Guard Management",
+            "Created guard: $firstname $lastname"
+        );
             header("Location: guards.php");
             exit();
         }else{

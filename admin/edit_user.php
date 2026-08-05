@@ -2,11 +2,15 @@
 include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");
+include("includes/audit_log.php");
 
 $id = $_GET['id'];
-$query = mysqli_query($con,"SELECT * FROM users WHERE id='$id'");
+$stmt = mysqli_prepare($con, "SELECT * FROM users WHERE id=?");
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
+$user = mysqli_fetch_assoc($result);
 
-$user = mysqli_fetch_assoc($query);
 if(isset($_POST['update'])){
     $fullname = trim($_POST['fullname']);
     $email = trim($_POST['email']);
@@ -15,10 +19,17 @@ if(isset($_POST['update'])){
     $status = trim($_POST['status']);
 $sql = "UPDATE users SET role_id=?, fullname=?, email=?, username=?, status=? WHERE id=?";
 
-    $stmt = mysqli_prepare($con,$sql);
+    $stmt = mysqli_prepare($con, $sql);
 
     mysqli_stmt_bind_param($stmt, "issssi", $role_id, $fullname, $email, $username, $status, $id);
-    if(mysqli_stmt_execute($stmt)){
+    if(mysqli_stmt_execute($stmt)){  
+           addAuditLog(
+            $con, 
+            $_SESSION['user_id'],
+            "Updated User",
+            "User Management",
+            "Updated user: $fullname"
+        );   
         echo "<script> alert('User updated successfully!'); window.location='users.php';</script>";
     }else{
         echo"<div class='alert alert-danger'> Update failed</div>";

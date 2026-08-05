@@ -1,7 +1,7 @@
 <footer class="bg-dark text-white text-center p-3 mt-auto">
     <p class="mb-0">
         &copy; <?php echo date("Y"); ?>
-        Security Agency Management System.
+        Mega Force Management System.
         All Rights Reserved.
     </p>
 </footer>
