@@ -46,6 +46,10 @@
         <i class="fas fa-calendar-check"></i>
         Attendance
     </a>
+    <a href="payroll.php" class="nav-link">
+        <i class="bi bi-cash"></i>
+        Payroll
+    </a>
      <a href="../logout.php">
         <i class="fa-solid fa-right-from-bracket"></i>
         Logout

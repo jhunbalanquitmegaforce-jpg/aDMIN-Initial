@@ -27,7 +27,7 @@ include("includes/sidebar.php");
             <tbody>
               <?php 
               $sql = "SELECT attendance.*, guards.employee_no, guards.firstname, guards.lastname, detachments.detachment_name 
-              FROM attendance
+              FROM attendance 
               LEFT JOIN guards ON attendance.guard_id = guards.id
               LEFT JOIN detachments ON guards.detachment_id = detachments.id
               ORDER BY attendance.attendance_date DESC";
