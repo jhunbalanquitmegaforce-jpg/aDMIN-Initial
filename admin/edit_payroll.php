@@ -27,7 +27,18 @@
         $rate_per_day = trim($_POST['rate_per_day']);
         $deductions = trim($_POST['deductions']);
 
+        if($days_worked < 0 || $rate_per_day < 0 || $deductions < 0){
+            echo "<div class='alert alert-danger'>
+            Days worked, rate per day, and deductions cannot be negative.
+            </div>";
+            exit();
+        }
         $gross_pay = $days_worked * $rate_per_day;
+        if($deductions > $gross_pay){
+            echo "<div class='alert alert-danger'>
+            Deduction cannot be greater than Gross Pay.</div>";
+            exit();
+        }
         $net_pay = $gross_pay - $deductions;
 
     $sql = "UPDATE payroll SET guard_id=?, payroll_from=?, payroll_to=?, days_worked=?, rate_per_day=?, deductions=?, gross_pay=?, net_pay=? WHERE id=?";
@@ -72,15 +83,15 @@
     </div>
     <div class="mb-3">
         <label>Days Worked</label>
-        <input type="number" name="days_worked" class="form-control" value="<?php echo ($payroll['days_worked']); ?>" required>
+        <input type="number" name="days_worked" class="form-control"  min="0" value="<?php echo ($payroll['days_worked']); ?>" required>
     </div>
     <div class="mb-3">
         <label>Rate Per Day</label>
-        <input type="number" step="0.01" name="rate_per_day" class="form-control" value="<?php echo ($payroll['rate_per_day']); ?>" required>
+        <input type="number" step="0.01" name="rate_per_day" class="form-control"  min="0" value="<?php echo ($payroll['rate_per_day']); ?>" required>
     </div>
     <div class="mb-3">
         <label>Deductions</label>
-        <input type="number" step="0.01" name="deductions" class="form-control" value="<?php echo ($payroll['deductions']); ?>" required>
+        <input type="number" step="0.01" name="deductions" class="form-control" min="0" value="<?php echo ($payroll['deductions']); ?>" required>
     </div>
     <button class="btn btn-success" name="update">Update Payroll</button>
     <a href="payroll.php" class="btn btn-secondary">Cancel</a>

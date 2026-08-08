@@ -11,7 +11,19 @@ if(isset($_POST['save'])) {
     $days_worked = $_POST['days_worked'];
     $rate_per_day = $_POST['rate_per_day'];
     $deductions = $_POST['deductions'];
+
+     if($days_worked < 0 || $rate_per_day < 0 || $deductions < 0){
+            echo "<div class='alert alert-danger'>
+            Days worked, rate per day, and deductions cannot be negative.
+            </div>";
+            exit();
+        }
     $gross_pay = $days_worked * $rate_per_day;
+    if($deductions > $gross_pay){
+            echo "<div class='alert alert-danger'>
+            Deduction cannot be greater than Gross Pay.</div>";
+            exit();
+        }
     $net_pay = $gross_pay - $deductions;
 
     $stmt = mysqli_prepare($con, "INSERT INTO payroll (guard_id, payroll_from, payroll_to, days_worked, rate_per_day, gross_pay, deductions, net_pay) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
@@ -67,15 +79,15 @@ if(isset($_POST['save'])) {
     </div>
     <div class="mb-3">
         <label>Days Worked</label>
-        <input type="number" name="days_worked" class="form-control" required>
+        <input type="number" name="days_worked" class="form-control" min="0" required>
     </div>
     <div class="mb-3">
         <label>Rate Per Day</label>
-        <input type="number" step="0.01" name="rate_per_day" class="form-control" required>
+        <input type="number" step="0.01" name="rate_per_day" class="form-control"  min="0" required>
     </div>
     <div class="mb-3">
         <label>Deductions</label>
-        <input type="number" step="0.01" name="deductions" class="form-control" value="0" required>
+        <input type="number" step="0.01" name="deductions" class="form-control" min="0" required>
     </div>
     <button name="save" class="btn btn-success">
         Save Payroll
