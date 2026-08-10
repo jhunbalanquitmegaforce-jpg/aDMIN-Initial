@@ -6,10 +6,29 @@ include('includes/sidebar.php');
 
 <div class="main-content">
     <?php include("includes/topbar.php"); ?>
-
     <div class="container-fluid mt-4">
         <h2>Payroll Summary Report</h2>
         <form method="GET" class="row g-2 mb-4">
+            <div class="mb-3">
+                <label>Guard</label>
+                <select name="guard_id" class="form-control">
+                    <option value="">All Guards</option>
+        <?php 
+        $guards = mysqli_query($con, 
+        "SELECT id, employee_no, firstname, lastname FROM guards Order by lastname ASC ");
+        While($guard = mysqli_fetch_assoc($guards)){
+         ?> 
+         <option value="<?php echo $guard['id']; ?>"
+         <?php echo(isset($_GET['guard_id']) && $_GET['guard_id'] == $guard['id']) ? 'selected' : '';?>>
+         <?php echo htmlspecialchars(
+            $guard['employee_no'] . ' - ' .
+            $guard['firstname'] . ' - ' .
+            $guard['lastname']
+         ); ?>
+        </option>
+        <?php } ?>
+        </select>
+        </div>
     <div class="col-md-4">
         <label>From</label>
         <input type="date"
@@ -38,8 +57,9 @@ include('includes/sidebar.php');
         <?php
         $from = isset($_GET['from']) ? trim($_GET['from']) : '';
         $to = isset($_GET['to']) ? trim($_GET['to']) : '';
-        $sql = "
-        SELECT
+        $guard_id = isset($_GET['guard_id']) ? trim($_GET['guard_id']) : '';
+
+        $sql = "SELECT
         COUNT(*) AS total_records, 
         COALESCE(SUM(gross_pay), 0) AS total_gross,
         COALESCE(SUM(deductions), 0) AS total_deductions,
@@ -60,6 +80,11 @@ include('includes/sidebar.php');
             $sql .= " AND payroll_to <= ?";
             $params[] = $to;
             $types .= "s";
+        }
+        if($guard_id !=''){
+            $sql .= " AND guard_id = ?";
+            $params[] =  $guard_id;
+            $types .= "i";
         }
         $stmt = mysqli_prepare($con, $sql);
         if(!empty($params)){
@@ -104,8 +129,17 @@ include('includes/sidebar.php');
                     </div>
                 </div>
             </div>
-
         </div>
+    </div>
+    <br>
+    <br>
+    <div class="d-flex justify-content-center">
+    <a href="payroll_print.php?guard_id=<?php echo urlencode($guard_id); ?>&from=<?php echo urlencode($from); ?>&to=<?php echo urlencode($to); ?>"
+    target="_blank"
+    class="btn btn-dark"
+    style="width: 30%; padding: 4px 8px; font-size: 12px;">
+    <i class="bi bi-printer"></i>Print Report
+    </a>
     </div>
 </div>
 <?php include("includes/footer.php"); ?>
