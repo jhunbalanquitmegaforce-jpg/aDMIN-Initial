@@ -17,6 +17,11 @@ if(isset($_GET['id'])){
     if(!$payroll){
         die("Payroll record not found.");
     }
+    if($payroll['status'] === 'Approved') {
+        header("Location: payroll.php?error=approved_locked");
+        exit();
+    }
+    
     //Deleting 
     $guard_name = $payroll['firstname'] . " " . $payroll['lastname'];
     $stmt = mysqli_prepare($con, "DELETE FROM payroll WHERE id=?");

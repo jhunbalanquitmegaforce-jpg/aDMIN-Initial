@@ -1,6 +1,6 @@
 <?php
 include("../config.php");
-
+date_default_timezone_set('Asia/Manila');
 $from = isset($_GET['from']) ? trim($_GET['from']) : '';
 $to = isset($_GET['to']) ? trim($_GET['to']) : '';
 $guard_id = isset($_GET['guard_id']) ? trim($_GET['guard_id']) : '';
@@ -60,6 +60,7 @@ $sql = "SELECT
                 table {
                     width: 100%;
                     border-collapse: collapse;
+                    margin-top: 15px;
                 }
                 th, td {
                     border: 1px solid #000;
@@ -68,9 +69,15 @@ $sql = "SELECT
                 }
                 th {
                     background-color: #f2f2f2;
+                    font-weight: bold;
+                    text-align: center;
+                }
+                td {
+                    vertical-align: middle;
                 }
                 .amount {
                     text-align: right;
+                    white-space: nowrap;
                 }
                 .print-button {
                     text-align: center;
@@ -103,8 +110,10 @@ $sql = "SELECT
                     font-size: 18px;
                 }
                 .report-details{
+                    margin: 15px 0 20px;
+                    padding: 10px 15px;
+                    border: 1px solid #000;
                     text-align: left;
-                    margin-top: 10px;
                     line-height: 1.8;
                 }
                 .signature-section {
@@ -112,6 +121,7 @@ $sql = "SELECT
                     justify-content: space-between;
                     margin-top: 60px;
                     page-break-inside: avoid;
+                    break-inside: avoid;
                 }
                 .signature-box{
                     width: 30%;
@@ -125,6 +135,74 @@ $sql = "SELECT
                     width: 100%;
                     margin-bottom: 8px;
                 }
+                .report-footer {
+                    text-align: center;
+                    margin-top: 40px;
+                    font-size: 11px;
+                    color: #666;
+                }
+                .report-footer p {
+                    margin: 2px 0;
+                }
+                @media print{
+                    .signature-section{
+                        break-inside: avoid;
+                    }
+                      .report-footer{
+                        position: fixed;
+                        bottom: 10px;
+                        left: 0;
+                        right: 0;
+                    }
+                    table{
+                        page-break-inside:auto;
+                    }
+                    tr {
+                        page-break-inside: avoid;
+                        page-break-after: auto;
+                    }
+                    thead{
+                        display: table-header-group;
+                    }
+                    tfoot{
+                        display: table-row-group;
+                    }
+                    @page {
+                        size: A4;
+                        margin: 15mm;
+                    }
+                }
+                .total-row {
+                    break-inside: avoid;
+                    font-weight: bold;
+                }
+                .total-row th,
+                .total-row td{
+                    font-weight: bold;
+                }
+                .report-title {
+                    text-align: center;
+                    margin-bottom: 20px;
+                    border-bottom: 2px solid;
+                    padding-bottom: 10px;
+                }
+                .report-title h2{
+                    margin-bottom: 5px;
+                    font-size: 22px;
+                }
+                .report-title p {
+                    margin: 0;
+                    font-size: 13px;
+                    color: #555;
+                }
+                .approval-title {
+                    text-align: center;
+                    margin-top: 40px;
+                    margin-bottom: 20px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
             </style>
         </head>
         <body>     
@@ -133,13 +211,15 @@ $sql = "SELECT
                 <i class="bi bi-printer"></i>
             </button>
         </div>
-        <div class="company-header">
-        <h2>MegaForce</h2>
+        <div class="report-title">
+            <h2>MegaForce</h2>
         <h2>PAYROLL SUMMARY REPORT</h2>
+        <p>MegaForce - Payroll Management System</p>
+        </div>
         <div class="report-details">
             <strong>Payroll Reference:</strong>
             <?php  echo htmlspecialchars($reference); ?>
-        </div>
+        
         <div class="filter-info">
             <strong>Payroll Period</strong>
         <?php if($from != '' && $to != '') {
@@ -226,7 +306,7 @@ $sql = "SELECT
                         </td>
                     </tr>
                 <?php } ?>
-                <tr>
+                <tr class="total-row">
                     <th colspan="4">TOTAL</th>
 
                     <th class="amount">
@@ -246,7 +326,7 @@ $sql = "SELECT
         <br>
         <br>
         <br>
-        
+        <h4 class="approval-title">PAYROLL APPROVAL</h4>
         <div class="signature-section">
             <div class="signature-box">
                 <p><strong>Prepared by:</strong></p>
@@ -269,6 +349,10 @@ $sql = "SELECT
                 <p>Management</p>
                 <p>Date: ______________</p>
             </div>
+        </div>
+        <div class="report-footer">
+            <p>MegaForce - Payroll Management System</p>
+            <p>Generated on <?php echo date("F j, Y h:i A"); ?></p>
         </div>
         </body>
         <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
