@@ -36,7 +36,7 @@ if($new_status === 'Checked' && $current_status !=='Draft'){
     header("Location: payroll.php?error=invalid_status");
     exit();
 }
-if($new_status === 'Apporved' && $current_status !=='Checked'){
+if($new_status === 'Approved' && $current_status !=='Checked'){
     header("Location: payroll.php?error=invalid_status");
     exit();
 }
