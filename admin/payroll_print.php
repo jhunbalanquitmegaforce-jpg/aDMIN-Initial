@@ -81,12 +81,7 @@ $sql = "SELECT
                 }
                 .print-button {
                     text-align: center;
-                    margin-bottom: 20px;
-                }
-                @media print {
-                    .print-button{
-                        display: none;
-                    }
+                    margin-bottom: 15px;
                 }
                 .print-icon {
                     width: 35px;
@@ -99,27 +94,27 @@ $sql = "SELECT
                 }
                 .company-header {
                     text-align: left;
-                    margin-bottom: 25px;
+                    margin-bottom: 12px;
                 }
                 .company-header h2 {
                     margin: 0;
-                    font-size: 24px;
+                    font-size: 22px;
                 }
                 .company-header h3 {
-                    margin: 5px 0 15px;
-                    font-size: 18px;
+                    margin: 3px 0 8px;
+                    font-size: 16px;
                 }
                 .report-details{
-                    margin: 15px 0 20px;
-                    padding: 10px 15px;
+                    margin: 8px 0 12px;
+                    padding: 7px 10px;
                     border: 1px solid #000;
                     text-align: left;
-                    line-height: 1.8;
+                    line-height: 1.4;
                 }
                 .signature-section {
                     display: flex;
                     justify-content: space-between;
-                    margin-top: 60px;
+                    margin-top: 30px;
                     page-break-inside: avoid;
                     break-inside: avoid;
                 }
@@ -128,81 +123,128 @@ $sql = "SELECT
                     text-align: center;
                 }
                 .signature-box p{
-                    margin: 5px 0;
+                    margin: 3px 0;
                 }
                 .signature-line {
-                    border-bottom: 1px solid;
+                    border-bottom: 1px solid #000;
                     width: 100%;
-                    margin-bottom: 8px;
+                    margin-bottom: 5px;
                 }
                 .report-footer {
                     text-align: center;
-                    margin-top: 40px;
-                    font-size: 11px;
+                    margin-top: 15px;
+                    font-size: 9px;
                     color: #666;
                 }
                 .report-footer p {
-                    margin: 2px 0;
+                    margin: 1px 0;
                 }
                 @media print{
-                    .signature-section{
-                        break-inside: avoid;
+                    @page{
+                        size: A4 portrait;
+                        margin: 8mm;
                     }
-                      .report-footer{
-                        position: fixed;
-                        bottom: 10px;
-                        left: 0;
-                        right: 0;
-                    }
+                      html,
+                      body {
+                        width: 100%;
+                        height: auto;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        font-family: Arial, sans-serif;
+                        font-size: 9pt;
+                        color: #000;
+                        background: #fff;
+                      }
+                      .print-button {
+                        display: none !important;
+                      }
+                      .company-header{
+                        margin-bottom: 7px !important;
+                      }
+                      .company-header h2{
+                        font-size: 18pt !important;
+                        margin: 0 !important;
+                      }
+                      .company-header h3{
+                        font-size: 13pt !important;
+                        margin:  2px 0 4px !important;
+                      }
+                      .company-header p {
+                        margin:  2px 0 !important;
+                      }
+                      .report-details{
+                        margin: 5px 0 8px !important;
+                        padding: 5px 8px !important;
+                        line-height: 1.25 !important;
+                        font-size: 8.5pt   !important;
+                      }
                     table{
-                        page-break-inside:auto;
+                        width: 100% !important;
+                        margin-top: 5px !important;
+                        page-break-inside:auto !important;
                     }
                     tr {
-                        page-break-inside: avoid;
-                        page-break-after: auto;
+                        page-break-inside: avoid !important;
+                        page-break-after: avoid !important;
                     }
                     thead{
                         display: table-header-group;
                     }
-                    tfoot{
-                        display: table-row-group;
+                    th,
+                    td{
+                        padding: 4px !important;
+                        font-size: 8.5pt !important;
                     }
-                    @page {
-                        size: A4;
-                        margin: 15mm;
+                    th{
+                        background: #f2f2f2 !important;
                     }
-                }
+                    .amount{
+                        white-space: nowrap !important;
+                    }
                 .total-row {
-                    break-inside: avoid;
-                    font-weight: bold;
+                    page-break-inside: avoid !important;
+                    break-inside: avoid !important;
                 }
-                .total-row th,
-                .total-row td{
-                    font-weight: bold;
+                .signature-section{
+                    margin-top: 15px !important;
+                    display: flex !important;
+                    justify-content: space-between !important;
+                    page-break-inside: avoid !important;
+                    break-inside: avoid !important;
                 }
-                .report-title {
+                .signature-box{
+                    width: 30% !important;
+                    font-size: 8.5pt !important;
+                    page-break-inside: avoid !important;
+                    break-inside: avoid !important;
+                }
+                .signature-box p{
+                    margin:  2px 0 !important;
+                }
+                .signature-line{
+                    margin-bottom: 4px !important;
+                }
+                .report-footer{
+                    position: fixed;
+                    bottom: 5mm;
+                    left:  0;
+                    right: 0;
                     text-align: center;
-                    margin-bottom: 20px;
-                    border-bottom: 2px solid;
-                    padding-bottom: 10px;
-                }
-                .report-title h2{
-                    margin-bottom: 5px;
-                    font-size: 22px;
-                }
-                .report-title p {
-                    margin: 0;
-                    font-size: 13px;
-                    color: #555;
+                    font-size: 10px;
                 }
                 .approval-title {
                     text-align: center;
-                    margin-top: 40px;
-                    margin-bottom: 20px;
+                    margin-top:  15px;
+                    margin-bottom: 12px;
                     font-size: 14px;
                     font-weight: bold;
                     text-decoration: underline;
                 }
+                br{
+                    line-height: 0.5 !important;
+                }
+                }
+
             </style>
         </head>
         <body>     
@@ -323,28 +365,22 @@ $sql = "SELECT
                 </tr>
             </tbody>
         </table>
-        <br>
-        <br>
-        <br>
         <h4 class="approval-title">PAYROLL APPROVAL</h4>
         <div class="signature-section">
             <div class="signature-box">
                 <p><strong>Prepared by:</strong></p>
-                <br><br>
                 <div class="signature-line"></div>
                 <p>IT / Payroll</p>
                 <p>Date: ______________</p>
             </div>
             <div class="signature-box">
                 <p><strong>Checked by:</strong></p>
-                <br><br>
                 <div class="signature-line"></div>
                 <p>OIC / HR</p>
                 <p>Date: ______________</p>
             </div>
             <div class="signature-box">
                 <p><strong>Approved by:</strong></p>
-                <br><br>
                 <div class="signature-line"></div>
                 <p>Management</p>
                 <p>Date: ______________</p>

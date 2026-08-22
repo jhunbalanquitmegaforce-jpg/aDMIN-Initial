@@ -65,7 +65,7 @@ include('includes/sidebar.php');
         COALESCE(SUM(deductions), 0) AS total_deductions,
         COALESCE(SUM(net_pay), 0) AS total_net
         FROM payroll
-        WHERE 1=1
+        WHERE status = 'Approved'
         ";
         $params = [];
         $types = "";

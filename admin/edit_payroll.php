@@ -4,6 +4,10 @@
     include("includes/sidebar.php");
     include("includes/audit_log.php");
 
+    if(!isset($_SESSION['user_id']) || $_SESSION['role_id'] != 1){
+    header("Location: ../login.php");
+    exit();
+    }
     if (!isset($_GET['id'])) {
         header("Location: payroll.php");
         exit();
@@ -14,11 +18,13 @@
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     $payroll = mysqli_fetch_assoc($result);
+
     if(!$payroll){
-        die("Payroll record not found.");
+        header("Location: payroll.php?error=not_found");
+        exit();
     }
-    if($payroll['status'] === 'Approved') {
-        header("Location: payroll.php?error=approved_locked");
+    if($payroll['status'] === 'Approved'){
+        header("Location: view_payroll.php?id=" .  $id . "&error=approved_locked");
         exit();
     }
     ?>
@@ -30,7 +36,6 @@
         $days_worked = trim($_POST['days_worked']);
         $rate_per_day = trim($_POST['rate_per_day']);
         $deductions = trim($_POST['deductions']);
-        $status = trim($_POST['status']);
 
         if($days_worked < 0 || $rate_per_day < 0 || $deductions < 0){
             echo "<div class='alert alert-danger'>
@@ -46,11 +51,11 @@
         }
         $net_pay = $gross_pay - $deductions;
 
-    $sql = "UPDATE payroll SET guard_id=?, payroll_from=?, payroll_to=?, days_worked=?, rate_per_day=?, deductions=?, gross_pay=?, net_pay=?, status=? WHERE id=?";
+    $sql = "UPDATE payroll SET guard_id=?, payroll_from=?, payroll_to=?, days_worked=?, rate_per_day=?, deductions=?, gross_pay=?, net_pay=? WHERE id=? AND status != 'Approved'";
 
         $stmt = mysqli_prepare($con, $sql);
 
-        mysqli_stmt_bind_param($stmt, "issiddddsi", $guard_id, $payroll_from, $payroll_to, $days_worked, $rate_per_day, $deductions, $gross_pay, $net_pay, $status, $id);
+        mysqli_stmt_bind_param($stmt, "issiddddi", $guard_id, $payroll_from, $payroll_to, $days_worked, $rate_per_day, $deductions, $gross_pay, $net_pay, $id);
         if(mysqli_stmt_execute($stmt)){
             $g = mysqli_query($con, "SELECT firstname, lastname FROM guards WHERE id='$guard_id'");
             $guard = mysqli_fetch_assoc($g);
@@ -61,7 +66,7 @@
                 "Payroll",
                 "Updated payroll for {$guard['firstname']} {$guard['lastname']}"
             );
-            header("Location: payroll.php?success=updated!");
+            header("Location: payroll.php?success=updated");
             exit();
         }else{
             echo"<div class='alert alert-danger'> Update failed</div>";
@@ -98,20 +103,7 @@
         <label>Deductions</label>
         <input type="number" step="0.01" name="deductions" class="form-control" min="0" value="<?php echo ($payroll['deductions']); ?>" required>
     </div>
-    <div class="mb-3">
-        <label>Status</label>
-        <select name="status" class="form-control" required>
-            <option value="Draft" <?php echo($payroll['status'] == 'Draft')  ? 'selected' : '' ;?>>
-                Draft
-            </option>
-            <option value="Checked" <?php echo($payroll['status'] == 'Checked')  ? 'selected' : '' ;?>>
-                Checked
-            </option>
-            <option value="Approved" <?php echo($payroll['status'] == 'Approved')  ? 'selected' : '' ;?>>   
-                Approved
-            </option>
-        </select>
-    </div>
+    
     <button class="btn btn-success" name="update">Update Payroll</button>
     <a href="payroll.php" class="btn btn-secondary">Cancel</a>
     </form>

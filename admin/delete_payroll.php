@@ -2,6 +2,10 @@
 session_start();
 include("../config.php");
 include("includes/audit_log.php");
+if(!isset($_SESSION['user_id']) || $_SESSION['role_id'] != 1){
+    header("Location: ../login.php");
+    exit();
+}
 
 if(isset($_GET['id'])){
     $id = $_GET['id'];
@@ -32,7 +36,7 @@ if(isset($_GET['id'])){
             $_SESSION['user_id'],
             "DELETED payroll",
             "Payroll",
-            "Deleted payroll for{$guard_name}"
+            "Deleted payroll for {$guard_name}"
         );
         header("Location: payroll.php?success=deleted");
         exit();    

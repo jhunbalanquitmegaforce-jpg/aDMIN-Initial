@@ -1,4 +1,14 @@
 <?php
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("Location: ../login.php");
+    exit();
+}
+$role_id = $_SESSION['role_id'] ?? 0;
+if($role_id != 1 && $role_id != 2) {
+    header("Location: payroll.php?error=access_denied");
+    exit();
+}
 include("includes/header.php");
 include("../config.php");
 include("includes/sidebar.php");

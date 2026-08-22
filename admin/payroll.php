@@ -3,6 +3,8 @@ include('includes/header.php');
 include('../config.php');
 include('includes/sidebar.php');
 
+$role_id = $_SESSION['role_id'] ?? 0;
+
 ?>
 
 <div class="main-content">
@@ -20,10 +22,10 @@ include('includes/sidebar.php');
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 <?php endif; ?>
-<?php if (isset($_GET['error']) && $_GET['error'] === 'approved_locked'): ?>
+<?php if (isset($_GET['error']) && $_GET['error'] === 'access_denied'): ?>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Payroll Locked</strong>
-    Approved payroll cannot be edited or deleted.
+    <strong>Access Denied</strong>
+    You do not have permission to access this payroll function.
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 </div>
 <?php endif; ?>
@@ -165,16 +167,17 @@ $rows[] = $row;
         ?>
     </td>
     <td class="text-nowrap">
+        <a href="view_payroll.php?id=<?php echo $row['id']; ?>"
+        class="btn btn-sm btn-secondary"><i class="bi bi-eye"></i>View</a> 
 
-        <?php if($row['status'] == 'Draft'): ?>
+        <?php if($row['status'] === 'Draft'): ?>
         <a href="payroll_status.php?id=<?php echo $row['id']; ?>&status=Checked" class="btn btn-sm btn-info" onclick="return confirm('Mark this payroll as Checked?')"><i class="bi bi-check2-circle"></i>Checked</a> 
             <?php elseif ($row['status'] == 'Checked'): ?>
                 <a href="payroll_status.php?id=<?php echo $row['id']; ?>&status=Approved"
                 class="btn btn-sm btn-success"
                 onclick="return confirm('Are you sure you want to APPROVE this payroll?\n\nOnce approved, it cannot be edited or deleted.')"><i class="bi bi-shield-check"></i>Approve</a>
                 <?php endif; ?>
-            <a href="view_payroll.php?id=<?php echo $row['id']; ?>"
-            class="btn btn-sm btn-secondary"><i class="bi bi-eye"></i>View</a>    
+            
 
             <?php if($row['status'] != 'Approved'): ?>
             <a href="edit_payroll.php?id=<?php echo $row['id']; ?>" class="btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>

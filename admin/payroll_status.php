@@ -3,8 +3,12 @@ session_start();
 include("../config.php");
 include("includes/audit_log.php");
 
+if(!isset($_SESSION['user_id']) || $_SESSION['role_id'] != 1){
+    header("Location: ../login.php");
+    exit();
+}
 if(!isset($_GET['id']) || !isset($_GET['status'])){
-    header("Location: Payroll.php");
+    header("Location: payroll.php");
     exit();
 }
 $id = (int) $_GET['id'];
@@ -26,7 +30,8 @@ $result = mysqli_stmt_get_result($stmt);
 $payroll = mysqli_fetch_assoc($result);
 
 if(!$payroll) {
-    die("Payroll record not found.");
+    header("Location: payroll.php?error=not_found");
+    exit();
 }
 $current_status = $payroll['status'];
 
@@ -53,7 +58,7 @@ if(mysqli_stmt_execute($stmt)) {
         $_SESSION['user_id'],
         "Updated Payroll Status",
         "Payroll",
-        "Changed payroll status for{$guard_name} from {$new_status}"
+        "Changed payroll status for {$guard_name} from {$current_status} to {$new_status}"
     );
     header("Location: payroll.php?success=status_updated");
     exit();

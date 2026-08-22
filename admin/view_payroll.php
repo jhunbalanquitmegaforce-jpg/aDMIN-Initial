@@ -48,14 +48,14 @@ if(!$payroll) {
         Back
     </a>
 
-    <button onclick="window.print()" class="btn btn-dark">
+    <button onclick="window.print()" class="btn btn-dark print-button">
         <i class="bi bi-printer"></i>
         Print
     </button>
 </div>
 </div>
 
-    <!-- //Payroll Inforamtion -->
+    <!-- Payroll Inforamtion -->
 <div class="card shadow-sm mb-4">
     <div class="card-header">
         <h5 class="mb-0">
@@ -122,7 +122,7 @@ if(!$payroll) {
     </div>
 </div>
 
-    <!-- // Payroll Computation -->
+    <!--  Payroll Computation -->
     <div class="card shadow-sm mb-4">
         <div class="card-header">
             <h5 class="mb-0">
@@ -168,7 +168,7 @@ if(!$payroll) {
         </div>
     </div>
 
-            <!-- //Status  -->
+            <!-- Status  -->
             <div class="card shadow-sm mb-4">
                 <div class="card-header">
                     <h5 class="mb-0">
@@ -199,7 +199,7 @@ if(!$payroll) {
             </div>
             </div>
 
-                <!-- //Record Information -->
+                <!-- Record Information -->
                 <div class="card shadow-sm mb-4">
                     <div class="card-header">
                         <h5 class="mb-0">
@@ -218,6 +218,13 @@ if(!$payroll) {
 </div>
 
 <style>
+
+    @media screen {
+        .print-only {
+            display: none;
+        }
+        
+    }
     @media print{
         @page {
             size: A4 portrait;
@@ -234,44 +241,86 @@ if(!$payroll) {
             display: none !important;
         }
         /* Remove Bootstrap/layout restrictions */
+        html,
         body {
             margin: 0 !important;
             padding: 0 !important;
-            background: white !important;
+            width: 100% !important;
+            background: #fff !important;
             font-family: Arial, sans-serif;
-            color: #000;
+            color: #000 !important;
+            font-size: 11pt !important;
         }
         .main-content {
             margin: 0 !important;
             padding: 0 !important;
             width: 100% !important;
-            max-width: 100% !important;
+            max-width: none !important;
+            min-height: 0 !important;
         }
         .container,
         .container-fluid {
             width: 100% !important;
-            max-width: 100% !important;
+            max-width: none !important;
             margin: 0  !important;
             padding: 0 !important;
         }
-        h1,
-        h2,
-        h3,
-        h4,
+        h2 {
+            font-size: 20pt !important;
+            margin: 0 0 4px 0 !important;
+        }
+       
         h5{
-            color: #000 !important;
+            font-size: 12pt !important;
+        }
+        p{
+            margin-top: 4px !important;
+            margin-bottom: 4px !important;
         }
         .card {
+            width: 100% !important;
+            max-width: none !important;
             box-shadow: none !important;
             border: 1px solid #000 !important;
+            border-radius: 0 !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
-            margin-bottom: 15px !important;
+            margin-bottom: 12px !important;
         }
+        .card-body{
+            padding: 1px !important;
+        }
+        .card-body
         .card-header {
-            padding: 15px !important;
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
         }
-        .row {
+        .border{
+            border: 1px solid #000 !important;
+        }
+        .rounded{
+            border-radius: 0 !important;
+        }
+        .p-3{
+            padding: 10px !important;
+        }
+        h4{
+            font-size: 15pt !important;
+            margin: 2px 0 !important;
+        }
+        .badge {
+            border: 1px solid #000 !important;
+            color: #000 !important;
+            background: #fff !important;
+            padding: 4px 8px !important;
+            font-size: 10pt !important;
+        }
+        .alert{
+            color: #000 !important;
+            background:  #fff !important;
+            border:  1px solid #000 !important;
+            margin-top: 10px !important;
+            margin-bottom:  0 !important;
             page-break-inside: avoid !important;
             break-inside: avoid !important;
         }
@@ -279,9 +328,32 @@ if(!$payroll) {
             page-break-inside: avoid !important;
             break-inside: avoid !important;
         }
-        .mt-4,
-        .mb-5 {
-            margin-bottom: 10px !important;
+        tr{
+            page-break-inside: avoid !important;
+        }
+        .shadow-sm{
+            box-shadow: none !important;
+        }
+        .main-content{
+            page-break-inside: avoid !important;
+        }
+        .row {
+           margin-left: 0 !important;
+           margin-right: 0 !important;
+        }
+        .row > * {
+            padding-left: 6px !important;
+            padding-right: 6px !important;
+        }
+        .record-information{
+            page-break-inside: avoid !important;
+            break-inside: avoid !important;
+        }
+        .mt-4 {
+            margin-top: 0 !important;
+        }
+        .mb-4 {
+            margin-bottom: 12px !important;
         }
         .footer,
         .report-footer {
