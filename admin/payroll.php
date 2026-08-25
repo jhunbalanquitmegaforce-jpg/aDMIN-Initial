@@ -35,7 +35,7 @@ $role_id = $_SESSION['role_id'] ?? 0;
     <input type="text"
     name="search"
     class="form-control"
-    placeholder="Search employeeno. or guard name"
+    placeholder="Search employee no. or guard name"
     value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ; ?>">
 </div>
 <div class="col-md-3">

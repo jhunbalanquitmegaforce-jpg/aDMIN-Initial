@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand fw-bold" href="index.php">
             <i class="fa-solid fa-shield-halved"></i>
-            SAMS
+            MEGAFORCE
         </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarNav">

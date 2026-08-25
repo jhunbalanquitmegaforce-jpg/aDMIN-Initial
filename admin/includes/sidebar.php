@@ -52,7 +52,7 @@
     </a>
     <a href="payroll_reports.php" class="nav-link">
         <i class="bi bi-bar-chart"></i>
-        Reports
+        Payroll Reports
     </a>
      <a href="../logout.php">
         <i class="fa-solid fa-right-from-bracket"></i>

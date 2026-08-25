@@ -38,36 +38,44 @@ while($row = mysqli_fetch_assoc($status_query)){
     <div class="container-fluid mt-4">
         <div class="row">
             <div class="col-md-3 mb-3">
-                <div class="card bg-primary text-white shadow">
-                    <div class="card-body">
+                <a href="users.php" class="text-decoration-none">
+                    <div class="card shadow-sm dashboard-card bg-success">
+                        <div class="card-body">
                         <h5>Total Users</h5>
                         <h2><?php echo $total_users; ?></h2>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-md-3 mb-3">
+                <a href="guards.php" class="text-decoration-none">
                 <div class="card bg-warning text-white shadow">
                     <div class="card-body">
                         <h5>Total Guards</h5>
                         <h2><?php echo $total_guards; ?></h2>
                     </div>
                 </div>
+                </a>
             </div>
             <div class="col-md-3 mb-3">
+                <a href="clients.php" class="text-decoration-none">
                 <div class="card bg-danger text-dark shadow">
                     <div class="card-body">
                         <h5>Total Clients</h5>
                         <h2><?php echo $total_clients; ?></h2>
                     </div>
                 </div>
+                </a>
             </div>
             <div class="col-md-3 mb-3">
+                <a href="guards.php" class="text-decoration-none">
                 <div class="card bg-danger text-white shadow">
                     <div class="card-body">
                         <h5>Total Detachment</h5>
                         <h2><?php echo $total_detachments; ?></h2>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
 <div class="card shadow mt-4">
