@@ -14,7 +14,7 @@ include("../config.php");
         exit();
     }
     $guard_id = (int) $_GET['id'];
-    $sql = "SELECT guards.*, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id 
+    $sql = "SELECT guards.*, guards.status AS guard_status, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id 
     WHERE guards.id = ? LIMIT 1";
     $stmt = mysqli_prepare($con, $sql);
 
@@ -59,17 +59,29 @@ $fullName = trim(
     <div class="card shadow">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-3 text-center mb-4">
+                <div class="col-md-3 mb-4 d-flex flex-column justify-content-center align-items-center text-center">
             <?php 
-            $profilePicture = !empty($guard['profile_picture'])
-            ? $guard['profile_picture']
-            : 'default.png';
-            ?>        
-            <img src="../assets/uploads/1785375537_image3.jpg<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Picture"
+             $profilePicture = $guard['profile_picture'] ?? ''; 
+             ?>
+            <?php 
+            if (!empty($profilePicture)): ?>   
+            <img src="../assets/uploads/guards/<?php echo htmlspecialchars($profilePicture); ?>" alt="Profile Picture"
             class="rounded-circle shadow"
             width="180"
             height="180"
             style="object-fit: cover;">
+            <!-- <small class="d-block text-muted mt-2">
+                <?php  echo htmlspecialchars($profilePicture); ?>
+            </small> -->
+            <?php else: ?>
+                <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mx-auto"
+                style="width:180px; height:180px;">
+                <i class="fa-solid fa-user fa-5x"></i>
+            </div>
+            <small class="d-block text-muted mt-2">
+                No profile picture
+            </small>
+            <?php endif; ?>
             <h4 class="mt-3 mb-1">
                 <?php echo htmlspecialchars($fullName); ?>
             </h4>
@@ -77,7 +89,7 @@ $fullName = trim(
                 <?php echo htmlspecialchars($guard['employee_no']); ?>
             </span>
             <div class="mt-2">
-                <?php  if ($guard['status'] === 'Active'): ?>
+                <?php  if (($guard['guard_status'] ?? '') === 'Active'): ?>
                     <span class="badge bg-success">
                         Active
                     </span>
@@ -89,41 +101,42 @@ $fullName = trim(
             </div>
             </div>
             <div class="col-md-9">
+            <div class="mb-4">
                 <h5 class="border-bottom pb-2 mb-3">
                     Personal Information
                 </h5>
                 <div class="row">
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <strong>First Name</strong>
                         <div>
-                            <?php echo htmlspecialchars($guard['firstname']); ?>
+                            <?php echo htmlspecialchars($guard['firstname'] ?? '-'); ?>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <strong>Middle Name</strong>
                         <div>
-                            <?php echo htmlspecialchars($guard['middlename']); ?>
+                            <?php echo htmlspecialchars($guard['middlename'] ?? '-'); ?>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <strong>Last Name</strong>
                         <div>
-                            <?php echo htmlspecialchars($guard['lastname']); ?>
+                            <?php echo htmlspecialchars($guard['lastname'] ?? '-'); ?>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <strong>Suffix</strong>
                         <div>
-                            <?php echo htmlspecialchars($guard['suffix']); ?>
+                            <?php echo htmlspecialchars($guard['suffix'] ?? '-'); ?>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <strong>Gender</strong>
                         <div>
-                            <?php echo htmlspecialchars($guard['gender']); ?>
+                            <?php echo htmlspecialchars($guard['gender'] ?? '-'); ?>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-4 mb-3">
                         <strong>Birthdate</strong>
                         <div>
                             <?php echo !empty($guard['birthdate'])
@@ -131,24 +144,24 @@ $fullName = trim(
                         </div>
                     </div>
                 </div>
-                <h5 class="border-bottom pb2 mb-3 mt-3">
+                <h5 class="border-bottom pb-2">
                     Contact Information
                 </h5>
                 <div class="row">
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                         <strong>Contact No.</strong>
                     <div>
                     <?php echo htmlspecialchars($guard['contact_no'] ?? '-'); ?>
                    </div>
                 </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                         <strong>Email</strong>
                     <div>
                     <?php echo htmlspecialchars($guard['email'] ?? '-'); ?>
                    </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-3">
                         <strong>Address</strong>
                     <div>
                     <?php echo htmlspecialchars($guard['address'] ?? '-'); ?>
@@ -156,15 +169,15 @@ $fullName = trim(
                 </div>
             </div>
             </div>
-        </div>
-        <h5 class="border-bottom pb-2 mb-3 mt-4">
+        
+        <h5 class="border-bottom pb-2">
             Employment Information
         </h5>
         <div class="row">
             <div class="col-md-4 mb-3">
                 <strong>Employee No.</strong>
                 <div>
-                    <?php echo htmlspecialchars($guard['employee_no']) ?>
+                    <?php echo htmlspecialchars($guard['employee_no'] ?? '-') ?>
                 </div>
             </div>
              <div class="col-md-4 mb-3">
@@ -178,21 +191,21 @@ $fullName = trim(
                 <strong>Detachment</strong>
                 <div>
                     <?php echo !empty($guard['detachment_name'])
-                    ? date('M d, Y', strtotime($guard['detachment_name'])): 'Unassigned'; ?>
+                    ? htmlspecialchars($guard['detachment_name']): 'Unassigned'; ?>
                 </div>
             </div>
         </div>
-        <h5 class="border-bottom pb-2 mb-3 mt-4">
+        <h5 class="border-bottom pb-2">
             License Information
         </h5>
         <div class="row">
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <strong>License No.</strong>
                 <div>
                     <?php echo htmlspecialchars($guard['license_no'] ?? '-'); ?>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-4 mb-3">
                 <strong>License Expiry</strong>
                 <div>
                     <?php echo !empty($guard['license_expiry'])
@@ -200,6 +213,8 @@ $fullName = trim(
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </div>
 </div>

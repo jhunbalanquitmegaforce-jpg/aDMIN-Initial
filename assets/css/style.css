@@ -61,9 +61,13 @@ body{
 .card{
     border-radius: 15px;
 }
-.login-section{
-    min-height: 90vh;
-    background: #f8f9fa;
+.login-section {
+    min-height: calc(100vh - 70px);
+    background-image: url("assets/images/login-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
 .login-card{
     border-radius: 20px;
@@ -160,4 +164,18 @@ body{
     justify-content: center;
     color: white;
     font-size: 24px;
+}
+.login-section:before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+}
+.login-section .container{
+    position: relative;
+    z-index: 1;
+}
+.login-card{
+    border-radius: 15px;
+    overflow: hidden;
 }

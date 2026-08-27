@@ -8,7 +8,7 @@ $search = "";
 if(isset($_GET['search'])){
     $search = trim($_GET['search']);
 }
-$sql = "SELECT  guards.*, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id where employee_no LIKE ? OR firstname LIKE ? OR lastname LIKE ? ORDER BY guards.lastname ASC";
+$sql = "SELECT  guards.*,  guards.status AS guard_status, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id where employee_no LIKE ? OR firstname LIKE ? OR lastname LIKE ? ORDER BY guards.lastname ASC";
 
 $stmt = mysqli_prepare($con, $sql);
 $keyword = "%$search%";
@@ -67,7 +67,7 @@ $query = mysqli_stmt_get_result($stmt);
                     <td><?php echo htmlspecialchars($row['gender']); ?></td>
                     <td><?php echo htmlspecialchars($row['contact_no']); ?></td>
                     <td><?php echo !empty($row['detachment_name']) ? htmlspecialchars($row['detachment_name']) : 'Unassigned'; ?></td>
-                    <td><?php echo htmlspecialchars($row['status']); ?></td>
+                    <td><?php echo htmlspecialchars($row['guard_status']); ?></td>
                     <td>
                         <a href="edit_guard.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">
                             Edit

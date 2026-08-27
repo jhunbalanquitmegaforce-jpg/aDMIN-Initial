@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Services";
+$pageTitle = "Login";
 include 'includes/header.php';
 include 'includes/navbar.php';
 ?>

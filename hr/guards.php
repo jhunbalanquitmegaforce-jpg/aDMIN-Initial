@@ -9,8 +9,17 @@ include("../config.php");
 
     <?php 
     $search = "";
+
+    $detachment_filter = "";
+    $status_filter = "";
     if (isset($_GET['search'])) {
         $search = trim($_GET['search']);
+    }
+    if (isset($_GET['detachment_id'])){
+        $detachment_filter = trim($_GET['detachment_id']);
+    }
+    if (isset($_GET['status'])){
+        $status_filter = trim($_GET['status']);
     }
     $limit = 10;
     $page = isset($_GET['page']) && is_numeric($_GET['page'])
@@ -35,8 +44,9 @@ include("../config.php");
 
     $totalPages = ceil($totalGuards / $limit);
 
-    $sql = "SELECT  guards.*, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id
-    WHERE employee_no LIKE ? OR firstname LIKE ? OR middlename LIKE ? OR lastname LIKE ? OR license_no LIKE ? ORDER BY guards.id DESC LIMIT ? OFFSET ?";
+    $sql = "SELECT  guards.*,  guards.status AS guard_status, detachments.detachment_name FROM guards LEFT JOIN detachments ON guards.detachment_id = detachments.id
+
+    WHERE guards.employee_no LIKE ? OR guards.firstname LIKE ? OR guards.middlename LIKE ? OR guards.lastname LIKE ? OR guards.license_no LIKE ? ORDER BY guards.id DESC LIMIT ? OFFSET ?";
     $stmt = mysqli_prepare($con, $sql);
     mysqli_stmt_bind_param(
     $stmt, "sssssii", $keyword, $keyword, $keyword, $keyword, $keyword, $limit, $offset
@@ -69,6 +79,7 @@ include("../config.php");
     <table class="table table-bordered table-hover shadow">
         <thead class="table-dark">
         <tr>
+            <th>Photo</th>
             <th>ID</th>
             <th>Employee No.</th>
             <TH>Full Name</TH>
@@ -78,7 +89,7 @@ include("../config.php");
             <th>License No.</th>
             <th>License Expiry</th>
             <th>Status</th>
-            <th width="170">Action</th>
+            <th class="text-nowrap">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -92,6 +103,25 @@ include("../config.php");
                 );
                  ?>
         <tr>
+            <td class="text-center">
+                <?php 
+                $profilePicture = $row['profile_picture'] ?? ''; ?>
+                <?php if (!empty($profilePicture)): ?>
+                    <img src="../assets/uploads/guards/<?php echo htmlspecialchars($profilePicture); ?>"
+                     alt="Profile Picture"
+                     class="rounded-circle"
+                     width="50"
+                     height="50"
+                     style="object-fit: cover;">
+                     <?php else: ?>
+                        <img src="../assets/uploads/guards/default.png"
+                     alt="Profile Picture"
+                     class="rounded-circle"
+                     width="50"
+                     height="50"
+                     style="object-fit: cover;">
+                     <?php endif; ?>
+            </td>
             <td><?php echo $row['id'] ?></td>
             <td><?php echo htmlspecialchars($row['employee_no']); ?></td>
             <td><?php echo htmlspecialchars($fullName); ?></td>
@@ -100,7 +130,7 @@ include("../config.php");
             <td><?php echo !empty($row['date_hired']) ? date('M d, Y', strtotime($row['date_hired'])): '-'; ?></td>
             <td><?php echo htmlspecialchars($row['license_no'] ?? '-'); ?></td>
             <td><?php echo !empty($row['license_expiry']) ? date('M d, Y', strtotime($row['license_expiry'])): '-'; ?></td>
-            <td><?php if ($row['status'] === 'Active'): ?>
+            <td><?php if (($row['guard_status'] ?? '') === 'Active'): ?>
             <span class="badge bg-success">
                 Active
             </span>
@@ -111,7 +141,8 @@ include("../config.php");
 
             <?php endif; ?>
             </td>
-            <td>
+            <td class="text-nowrap">
+                <div class="d-flex gap-1">
                 <a href="view_guard.php?id=<?php echo $row['id']; ?>"
                 class="btn btn-info btn-sm">
                  View
@@ -120,12 +151,13 @@ include("../config.php");
                 <a href="delete_guard.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Delete this guard?');">
                     Delete 
                  </a>
+                 </div>
             </td>
         </tr> 
     <?php endwhile; ?>
     <?php else: ?>
         <tr>
-            <td colspan="9"
+            <td colspan="11"
             class="text-center text-muted py-4">
                 No guards found
             </td>
