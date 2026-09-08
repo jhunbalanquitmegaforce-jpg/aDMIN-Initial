@@ -33,12 +33,12 @@ $topbarUser = mysqli_fetch_assoc($result);
 <div class="topbar">
             <div class="dropdown">
             <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="../assets/uploads/1785376343_image4.jpg<?php echo htmlspecialchars($topbarUser['profile_picture']); ?>" alt="<?php echo htmlspecialchars($topbarUser['fullname']); ?>" title="Click to enlarge" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
+                <img src="../assets/uploads/<?php echo htmlspecialchars($topbarUser['profile_picture']); ?>" alt="<?php echo htmlspecialchars($topbarUser['fullname']); ?>" title="Click to enlarge" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
                 <span><?php echo htmlspecialchars($topbarUser['fullname']); ?></span>
             </a>
             <ul class="dropdown-menu">
                 <li class="text-center p-3">
-                    <img src="../assets/uploads/1785376343_image4.jpg<?php echo htmlspecialchars($topbarUser['profile_picture']); ?>" alt="<?php echo htmlspecialchars($topbarUser['fullname']); ?>" class="rounded-circle" width="80" height="80" style="object-fit: cover;"> 
+                    <img src="../assets/uploads/<?php echo htmlspecialchars($topbarUser['profile_picture']); ?>" alt="<?php echo htmlspecialchars($topbarUser['fullname']); ?>" class="rounded-circle" width="80" height="80" style="object-fit: cover;"> 
                     <h6 class="mb-0"><?php echo htmlspecialchars($topbarUser['fullname']); ?></h6>
                     <small class="text-muted">
                         <?php echo htmlspecialchars($topbarUser['email']); ?>
@@ -50,7 +50,7 @@ $topbarUser = mysqli_fetch_assoc($result);
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="account_settings.php">Account Settings</a></li>
-                <li><a class="dropdown-item" href="../../logout.php">Sign out</a></li>
+                <li><a class="dropdown-item" href="../logout.php">Sign out</a></li>
             </ul>
         </div>
         <!-- <div class="modal fade" id="profileModal" tabindex="-1">

@@ -9,7 +9,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</a>
             </li>
@@ -26,9 +26,7 @@
                 <a class="nav-link" href="contact.php">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-warning m-3" href="login.php">
-                    Login
-                </a>
+                <a class="btn btn-warning ms-3" href="login.php">Login</a>
             </li>
         </ul>
     </div>

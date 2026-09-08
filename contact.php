@@ -34,7 +34,7 @@ include 'includes/navbar.php';
                         <i class="fa-solid fa-clock text-warning"></i>
                         <strong>Office Hours:</strong><br>
                         Monday - friday <br>
-                        8:00 AM - 4:00 PM
+                        8:00 AM - 5:00 PM
                     </p>
                 </div>
             </div>
@@ -86,7 +86,11 @@ include 'includes/navbar.php';
         <h3 class="text-center mb-4">Our Location</h3>
         <div class="ratio ratio-16x9 shadow">
 
-        <iframe src="https://www.google.com/maps?q=Quezon+City&output=embed" loading="lazy" allowfullscreen></iframe>
+        <iframe
+            src="https://www.google.com/maps?q=4+Albany,+corner+Aurora+Blvd,+Quezon+City,+1102+Metro+Manila,+Philippines&output=embed"
+            loading="lazy"
+            allowfullscreen>
+        </iframe>
         </div>
     </div>
  </section>

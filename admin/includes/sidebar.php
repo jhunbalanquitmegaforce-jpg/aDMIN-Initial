@@ -34,14 +34,6 @@
         <i class="fa-solid fa-map-location-dot"></i>
         Detachments
     </a>
-     <a href="settings.php">
-        <i class="fa-solid fa-gear"></i>
-        Settings
-    </a>
-     <a href="audit_logs.php">
-        <i class="fas fa-history"></i>
-        Audit Logs
-    </a>
     <a href="attendance.php" class="nav-link">
         <i class="fas fa-calendar-check"></i>
         Attendance
@@ -53,6 +45,14 @@
     <a href="payroll_reports.php" class="nav-link">
         <i class="bi bi-bar-chart"></i>
         Payroll Reports
+    </a>
+     <a href="audit_logs.php">
+        <i class="fas fa-history"></i>
+        Audit Logs
+    </a>
+     <a href="settings.php">
+        <i class="fa-solid fa-gear"></i>
+        Settings
     </a>
      <a href="../logout.php">
         <i class="fa-solid fa-right-from-bracket"></i>

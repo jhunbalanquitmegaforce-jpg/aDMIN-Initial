@@ -91,7 +91,7 @@ if(isset($_POST['save'])){
         <button type="submit" name="save" class="btn btn-success">
             Save Client
         </button>
-        <a href="guards.php" class="btn btn-secondary">
+        <a href="clients.php" class="btn btn-secondary">
             Cancel
         </a>
         </form>

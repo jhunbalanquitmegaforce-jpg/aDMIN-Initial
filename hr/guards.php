@@ -30,7 +30,7 @@ include("../config.php");
     }
     $offset = ($page - 1) * $limit;
     $keyword = "%$search%";
-    $countSql = "SELECT COUNT(*) AS total FROM guards WHERE employee_no LIKE ? OR firstname LIKE ? OR middlename LIKE ? OR lastname LIKE ? OR license_no LIKE ?";
+    $countSql = "SELECT COUNT(*) AS total FROM guards WHERE (employee_no LIKE ? OR firstname LIKE ? OR middlename LIKE ? OR lastname LIKE ? OR license_no LIKE ?) ";
 
     $countStmt = mysqli_prepare($con, $countSql);
     mysqli_stmt_bind_param($countStmt, "sssss", $keyword, $keyword, $keyword, $keyword, $keyword);

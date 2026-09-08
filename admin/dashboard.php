@@ -49,7 +49,7 @@ while($row = mysqli_fetch_assoc($status_query)){
             </div>
             <div class="col-md-3 mb-3">
                 <a href="guards.php" class="text-decoration-none">
-                <div class="card bg-warning text-white shadow">
+                <div class="card text-white bg-warning shadow-sm dashboard-card">
                     <div class="card-body">
                         <h5>Total Guards</h5>
                         <h2><?php echo $total_guards; ?></h2>
@@ -59,7 +59,7 @@ while($row = mysqli_fetch_assoc($status_query)){
             </div>
             <div class="col-md-3 mb-3">
                 <a href="clients.php" class="text-decoration-none">
-                <div class="card bg-danger text-dark shadow">
+                <div class="card bg-danger shadow-sm dashboard-card">
                     <div class="card-body">
                         <h5>Total Clients</h5>
                         <h2><?php echo $total_clients; ?></h2>
@@ -69,7 +69,7 @@ while($row = mysqli_fetch_assoc($status_query)){
             </div>
             <div class="col-md-3 mb-3">
                 <a href="guards.php" class="text-decoration-none">
-                <div class="card bg-danger text-white shadow">
+                <div class="card bg-danger text-white shadow-sm dashboard-card">
                     <div class="card-body">
                         <h5>Total Detachment</h5>
                         <h2><?php echo $total_detachments; ?></h2>
