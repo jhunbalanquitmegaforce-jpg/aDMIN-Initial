@@ -11,22 +11,22 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
+                <a class="nav-link" href="index.php#home">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about.php">About</a>
+                <a class="nav-link" href="index.php#about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="services.php">Services</a>
+                <a class="nav-link" href="index.php#services">Services</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="careers.php">Careers</a>
+                <a class="nav-link" href="index.php#careers">Careers</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="contact.php">Contact</a>
+                <a class="nav-link" href="index.php#contact">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-warning ms-3" href="login.php">Login</a>
+                <a class="btn btn-success ms-3" href="login.php">Login</a>
             </li>
         </ul>
     </div>

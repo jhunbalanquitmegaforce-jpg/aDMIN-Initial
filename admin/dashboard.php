@@ -68,7 +68,7 @@ while($row = mysqli_fetch_assoc($status_query)){
                 </a>
             </div>
             <div class="col-md-3 mb-3">
-                <a href="guards.php" class="text-decoration-none">
+                <a href="detachments.php" class="text-decoration-none">
                 <div class="card bg-danger text-white shadow-sm dashboard-card">
                     <div class="card-body">
                         <h5>Total Detachment</h5>

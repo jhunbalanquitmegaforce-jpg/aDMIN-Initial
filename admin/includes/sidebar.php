@@ -54,6 +54,10 @@
         <i class="fa-solid fa-gear"></i>
         Settings
     </a>
+     <a href="contact_messages.php">
+        <i class="fa-solid fa-envelope"></i>
+        Contact Messages
+    </a>
      <a href="../logout.php">
         <i class="fa-solid fa-right-from-bracket"></i>
         Logout
