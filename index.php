@@ -77,8 +77,19 @@
                 <div class="card-body text-center">
                     <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>Security Guards</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus saepe repudiandae quibusdam non voluptas! Laborum, nesciunt, nihil molestias repellat, porro magnam perferendis rerum natus exercitationem aspernatur maiores facere quibusdam accusantium!</p>
-                    <a href="#" class="btn btn-success">Learn More</a>
+                    <p>Professional security personnel providing reliable
+                        protection for people, property, and facilities.
+                    </p>
+                    <button 
+                        type="button"
+                        class="btn btn-success service-gallery-btn"
+                        data-service="Security Guards"
+                        data-images='[
+                        "assets/images/services/security-guard-1.jpg",
+                        "assets/images/services/security-guard-2.jpg",
+                        "assets/images/services/security-guard-3.jpg"
+                        ]'>Learn More
+                    </button>
                 </div>
             </div>
          </div>
@@ -89,8 +100,18 @@
                 <div class="card-body text-center">
                     <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>VIP Protection</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus saepe repudiandae quibusdam non voluptas! Laborum, nesciunt, nihil molestias repellat, porro magnam perferendis rerum natus exercitationem aspernatur maiores facere quibusdam accusantium!</p>
-                    <a href="#" class="btn btn-success">Learn More</a>
+                    <p>Professional and discreet protection services for 
+                        executives, VIPs, and high-profile clients.</p>
+                     <button 
+                        type="button"
+                        class="btn btn-success service-gallery-btn"
+                        data-service="VIP Protection"
+                        data-images='[
+                        "assets/images/services/security-vip-1.jpg",
+                        "assets/images/services/security-vip-2.jpg",
+                        "assets/images/services/security-vip-3.jpg"
+                        ]'>Learn More
+                    </button>
                 </div>
             </div>
          </div>
@@ -101,8 +122,19 @@
                 <div class="card-body text-center">
                     <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>CCTV Monitoring</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus saepe repudiandae quibusdam non voluptas! Laborum, nesciunt, nihil molestias repellat, porro magnam perferendis rerum natus exercitationem aspernatur maiores facere quibusdam accusantium!</p>
-                    <a href="#" class="btn btn-success">Learn More</a>
+                    <p>Continuous surveillance and monitor to help
+                        detect and respond to security inceidents.
+                    </p>
+                     <button 
+                        type="button"
+                        class="btn btn-success service-gallery-btn"
+                        data-service="CCTV Monitoring"
+                        data-images='[
+                        "assets/images/services/cctv-1.jpg",
+                        "assets/images/services/cctv-2.jpg",
+                        "assets/images/services/cctv-3.jpg"
+                        ]'>Learn More
+                    </button>
                 </div>
             </div>
          </div>
@@ -113,8 +145,19 @@
                 <div class="card-body text-center">
                     <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>Event Security</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus saepe repudiandae quibusdam non voluptas! Laborum, nesciunt, nihil molestias repellat, porro magnam perferendis rerum natus exercitationem aspernatur maiores facere quibusdam accusantium!</p>
-                    <a href="#" class="btn btn-success">Learn More</a>
+                    <p>Professional security coverage for events,
+                        venues, gatherings, and special occasions.
+                    </p>
+                     <button 
+                        type="button"
+                        class="btn btn-success service-gallery-btn"
+                        data-service="Event Security"
+                        data-images='[
+                        "assets/images/services/event-1.jpg",
+                        "assets/images/services/event-2.jpg",
+                        "assets/images/services/event-3.jpg"
+                        ]'>Learn More
+                    </button>
                 </div>
             </div>
          </div>
@@ -125,8 +168,19 @@
                 <div class="card-body text-center">
                     <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>Office Security</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus saepe repudiandae quibusdam non voluptas! Laborum, nesciunt, nihil molestias repellat, porro magnam perferendis rerum natus exercitationem aspernatur maiores facere quibusdam accusantium!</p>
-                    <a href="#" class="btn btn-success">Learn More</a>
+                    <p>Reliable security personnel for offices,
+                        commercial buildings, and business facilities.
+                    </p>
+                     <button 
+                        type="button"
+                        class="btn btn-success service-gallery-btn"
+                        data-service="Office Security"
+                        data-images='[
+                        "assets/images/services/office-1.jpg",
+                        "assets/images/services/office-2.jpg",
+                        "assets/images/services/office-3.jpg"
+                        ]'>Learn More
+                    </button>
                 </div>
             </div>
          </div>
@@ -137,8 +191,19 @@
                 <div class="card-body text-center">
                     <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>Mobile Patrol</h4>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ducimus saepe repudiandae quibusdam non voluptas! Laborum, nesciunt, nihil molestias repellat, porro magnam perferendis rerum natus exercitationem aspernatur maiores facere quibusdam accusantium!</p>
-                    <a href="#" class="btn btn-success">Learn More</a>
+                    <p>Vissible mobile patrol services providing security
+                        presence and rapid response for designated areas.
+                    </p>
+                     <button 
+                        type="button"
+                        class="btn btn-success service-gallery-btn"
+                        data-service="Mobile Patrol"
+                        data-images='[
+                        "assets/images/services/patrol-1.jpg",
+                        "assets/images/services/patrol-2.jpg",
+                        "assets/images/services/patrol-3.jpg"
+                        ]'>Learn More
+                    </button>
                 </div>
             </div>
          </div>
@@ -172,6 +237,61 @@
    </section>
 </section>
 <section id="careers">
+    <div class="modal fade" id="serviceGalleryModal" tabindex="1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content service-gallery-modal">
+
+            <div class="modal-header">
+                <div>
+                    <h4 class="modal-title" id="galleryTitle">
+                        Security Services
+                    </h4>
+                    <small class="text-muted" id="galleryCounter">
+                        1/1
+                    </small>
+                </div>
+                <button 
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-main">
+                    <button type="button"
+                    class="galeryPrev">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <img id="galleryMainImage" src="" alt="Service Image">
+            <button type="button"
+                    class="galery-nav gallery-next" 
+                    id="galleryNext">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+                </div>
+                <div class="gallery-controls text-center mt-3">
+                    <button type="button"
+                    class="btn btn-dark"
+                    id="zoomOut">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+            <button 
+            type="button"
+            class="btn btn-secondary"
+            id="zoomReset">
+                Reset 
+            </button>
+            <button type="button"
+                    class="btn btn-dark"
+                    id="zoomIn">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+                </div>
+                <div id="galleryThumbnails"
+                class="gallery-thumbnails mt-4"></div>
+            </div>
+            </div>
+        </div>
+    </div>
  <section class="py-5">
     <div class="container">
 
@@ -341,4 +461,150 @@
     </div>
  </section>
 </section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const galleryModalElement = document.getElementById("ServiceGalleryModal");
+    
+    const galleryModal = 
+    new bootstrap.Modal(galleryModalElement);
+
+    const galleryTitle = document.getElementById("galleryTitle");
+    const galleryCounter = document.getElementById("galleryCounter");
+    const galleryMainImage = document.getElementById("galleryMainImage");
+    const galleryThumbnails = document.getElementById("galleryThumbnails");
+    const previousButton = document.getElementById("galleryPrev");
+    const nextButton = document.getElementById("galleryNext");
+    const zoomInButton = document.getElementById("zoomIn");
+    const zoomOutButton = document.getElementById("zoomOut");
+    const zoomResetButton = document.getElementById("zoomReset");
+
+    let images = [];
+    let currentIndex = 0;
+    let zoomLevel = 1;
+
+    document
+    .querySelectorAll(".service-gallery-btn")
+    .forEach(function(button){
+        button.addEventListener("click", function (){
+            const serviceName = this.dataset.service;
+            images = JSON.parse(this.dataset.images);
+            currentIndex = 0;
+            zoomLevel = 1;
+            galleryTitle.textContent = serviceName;
+            showImage();
+            galleryModal.show();
+
+        });
+    });
+
+    function showImage(){
+        if (images.length === 0)  {
+            return;
+        }
+        galleryMainImage.src = images[currentIndex];
+        galleryCounter.textContent = `${currentIndex + 1} / ${images.length}`;
+
+        galleryMainImage.style.transform = `scale(${zoomLevel})`;
+        createThumbnails();
+    }
+        function createThumbnails(){
+            galleryThumbnails.innerHTML = "";
+            images.forEach(function (image, index){
+                const thumbnail =
+                document.createElement("img");
+                thumbnail.src = image;
+                thumbnail.className = "gallery-thumb";
+
+                if (index === currentIndex) {
+                    thumbnail.classList.add("active");
+                }
+                thumbnail.addEventListener(
+                    "click",
+                    function() {
+                        currentIndex = index;
+                        zoomLevel = 1;
+                        showImage();
+                    }
+                );
+
+                galleryThumbnails.appendChild(
+                    thumbnail
+                );
+            });
+        }
+        nextButton.addEventListener(
+            "click",
+            function(){
+                currentIndex++;
+
+                if (currentIndex >= images.length) {
+                    currentIndex = 0;
+                }
+                zoomLevel = 1;
+                showImage();
+            }
+        );
+
+        previousButton.addEventListener(
+            "click",
+            function (){
+                currentIndex--;
+                if (currentIndex < 0) {
+                    currentIndex = images.length - 1;
+                }
+                zoomLevel = 1;
+                showImage();
+            }
+        );
+        zoomInButton.addEventListener(
+            "click",
+            function () {
+                zoomLevel += 0.2;
+                if (zoomLevel > 3) {
+                    zoomLevel = 3;
+                }
+                galleryMainImage.style.transform = `scale(${zoomLevel})`;
+            }
+        );
+            zoomInButton.addEventListener(
+                "click",
+                function (){
+                    zoomLevel -= 0.2;
+                    if (zoomLevel < 1) {
+                        zoomLevel = 1;
+                    }
+                    galleryMainImage.style.transform = `scale(${zoomLevel})`;
+                }
+            );
+             zoomInButton.addEventListener(
+                "click",
+                function (){
+                    zoomLevel -= 1;
+                    galleryMainImage.style.transform = "scale(1)";
+                }
+            );
+            document.addEventListener(
+                "keydown",
+                function (event) {
+                    if (!galleryModalElement.classList.contains("show")){
+                        return;
+                    }
+                    if (event.key === "ArrowRight"){
+                        nextButton.click();
+                    }
+                    if(event.key === "ArrowLeft") {
+                        previousButton.click();
+                    }
+                    if(event.key === "+") {
+                        zoomInButton.click();
+                    }
+                    if (event.key === "-") {
+                        zoomOutButton.click();
+                    }
+                }
+            );
+
+    } );
+</script>
 <?php include 'includes/footer.php';?>

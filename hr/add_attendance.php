@@ -77,8 +77,11 @@ if (isset($_POST['save'])) {
 
             <div class="mb-3">
                 <label>Guard</label>
+                <a href="add_attendance.php" class="btn btn-success mb-3">
+            Add Attendance
+                 </a>
 
-                <select name="guard_id" class="form-control" required>
+                 <!-- <select name="guard_id" class="form-control" required>
                     <option value="">Select Guard</option>
 
                     <?php
@@ -104,7 +107,7 @@ if (isset($_POST['save'])) {
 
                     <?php } ?>
 
-                </select>
+                </select> -->
             </div>
 
             <div class="mb-3">

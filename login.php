@@ -57,28 +57,16 @@ include 'includes/navbar.php';
                                     Register your new password
                                 </p>
                             </div>
-                            <form action="reset_password.php" method="POST">
+                            <form action="send_otp.php" method="POST">
                                 <div class="mb-3">
                                     <label class="form-label">
                                         Username
                                     </label>
-                                    <input type="text" class="form-control" name="username" placeholder="Enter your username" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        New Password
-                                    </label>
-                                    <input type="password" class="form-control" name="new_password" placeholder="Enter your new password" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Confirm Password
-                                    </label>
-                                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm your new password" required>
+                                    <input type="text" class="form-control" name="username" placeholder="Enter your username to receive an OTP" required>
                                 </div>
                                 <div class="d-grid">
                                     <button type="submit" class="btn btn-success btn-lg">
-                                        Reset Password
+                                        Send OTP
                                     </button>
                                 </div>
                             </form>
