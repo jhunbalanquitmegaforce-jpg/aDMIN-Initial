@@ -75,7 +75,7 @@
          <div class="col-md-4">
             <div class="card h-100 shadow service-card">
                 <div class="card-body text-center">
-                    <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
+                    <i class="fa-solid fa-user-shield fa-4x text-success mb-3"></i>
                     <h4>Security Guards</h4>
                     <p>Professional security personnel providing reliable
                         protection for people, property, and facilities.
@@ -98,7 +98,7 @@
               <div class="col-md-4">
             <div class="card h-100 shadow service-card">
                 <div class="card-body text-center">
-                    <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
+                    <i class="fa-solid fa-user-tie fa-4x text-success mb-3"></i>
                     <h4>VIP Protection</h4>
                     <p>Professional and discreet protection services for 
                         executives, VIPs, and high-profile clients.</p>
@@ -120,7 +120,7 @@
             <div class="col-md-4">
             <div class="card h-100 shadow service-card">
                 <div class="card-body text-center">
-                    <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
+                    <i class="fa-solid fa-video fa-4x text-success mb-3"></i>
                     <h4>CCTV Monitoring</h4>
                     <p>Continuous surveillance and monitor to help
                         detect and respond to security inceidents.
@@ -143,7 +143,7 @@
                <div class="col-md-4">
             <div class="card h-100 shadow service-card">
                 <div class="card-body text-center">
-                    <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
+                    <i class="fa-solid fa-people-group fa-4x text-success mb-3"></i>
                     <h4>Event Security</h4>
                     <p>Professional security coverage for events,
                         venues, gatherings, and special occasions.
@@ -166,7 +166,7 @@
             <div class="col-md-4">
             <div class="card h-100 shadow service-card">
                 <div class="card-body text-center">
-                    <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
+                    <i class="fa-solid fa-building-shield fa-4x text-success mb-3"></i>
                     <h4>Office Security</h4>
                     <p>Reliable security personnel for offices,
                         commercial buildings, and business facilities.
@@ -189,7 +189,7 @@
             <div class="col-md-4">
             <div class="card h-100 shadow service-card">
                 <div class="card-body text-center">
-                    <i class="fa-sold fa-user-shield fa-4x text-success mb-3"></i>
+                    <i class="fa-solid fa-car-side fa-4x text-success mb-3"></i>
                     <h4>Mobile Patrol</h4>
                     <p>Vissible mobile patrol services providing security
                         presence and rapid response for designated areas.
@@ -237,7 +237,7 @@
    </section>
 </section>
 <section id="careers">
-    <div class="modal fade" id="serviceGalleryModal" tabindex="1">
+    <div class="modal fade" id="serviceGalleryModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content service-gallery-modal">
 
@@ -253,17 +253,19 @@
                 <button 
                 type="button"
                 class="btn-close"
-                data-bs-dismiss="modal"></button>
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="gallery-main">
                     <button type="button"
-                    class="galeryPrev">
+                    class="gallery-nav gallery-Prev"
+                    id="galleryPrev">
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
             <img id="galleryMainImage" src="" alt="Service Image">
             <button type="button"
-                    class="galery-nav gallery-next" 
+                    class="gallery-nav gallery-next" 
                     id="galleryNext">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
@@ -287,7 +289,8 @@
             </button>
                 </div>
                 <div id="galleryThumbnails"
-                class="gallery-thumbnails mt-4"></div>
+                class="gallery-thumbnails mt-4">
+            </div>
             </div>
             </div>
         </div>
@@ -464,10 +467,10 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-    const galleryModalElement = document.getElementById("ServiceGalleryModal");
+    const galleryModalElement = document.getElementById("serviceGalleryModal");
     
-    const galleryModal = 
-    new bootstrap.Modal(galleryModalElement);
+    // const galleryModal = 
+    // new bootstrap.Modal(galleryModalElement);
 
     const galleryTitle = document.getElementById("galleryTitle");
     const galleryCounter = document.getElementById("galleryCounter");
@@ -478,6 +481,12 @@
     const zoomInButton = document.getElementById("zoomIn");
     const zoomOutButton = document.getElementById("zoomOut");
     const zoomResetButton = document.getElementById("zoomReset");
+
+    if(!galleryModalElement) {
+        console.error("Gallery modal element not found.");
+        return;
+    }
+    const galleryModal = new bootstrap.Modal(galleryModalElement);
 
     let images = [];
     let currentIndex = 0;
@@ -536,6 +545,9 @@
         nextButton.addEventListener(
             "click",
             function(){
+                if (images.length === 0) {
+                    return;
+                }
                 currentIndex++;
 
                 if (currentIndex >= images.length) {
@@ -549,6 +561,9 @@
         previousButton.addEventListener(
             "click",
             function (){
+                if (images.length === 0) {
+                    return;
+                }
                 currentIndex--;
                 if (currentIndex < 0) {
                     currentIndex = images.length - 1;
@@ -567,7 +582,7 @@
                 galleryMainImage.style.transform = `scale(${zoomLevel})`;
             }
         );
-            zoomInButton.addEventListener(
+            zoomOutButton.addEventListener(
                 "click",
                 function (){
                     zoomLevel -= 0.2;
@@ -577,10 +592,10 @@
                     galleryMainImage.style.transform = `scale(${zoomLevel})`;
                 }
             );
-             zoomInButton.addEventListener(
+             zoomResetButton.addEventListener(
                 "click",
                 function (){
-                    zoomLevel -= 1;
+                    zoomLevel = 1;
                     galleryMainImage.style.transform = "scale(1)";
                 }
             );
